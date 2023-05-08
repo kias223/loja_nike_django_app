@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/user_purchase.css'%}">
+</head>
+{% endblock %}
+
+{% block body %}
+
+{% for data in purchase_details %}
+<section>
+    <div class="purchase_details">
+        <h4>codigo de identificaçao: {{data.id}}</h4>
+        <p>{{data.data_hora }}</p>
+    </div>
+
+    <h1 class="price"></h1>
+    <h3>feito em {{data.parcelas}}</h3>
+    {{data.props|safe}}
+
+    <div>
+        {% if data.status == None %}
+        <p>status: aguardando confirmação do pagamento</p>
+        {% else %}
+        <p>status: {{ data.status }}</p>
+        {% endif %}
+    </div>
+
+</section>
+{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+
+var prices = [
+{% for prop in purchase_details %}
+'{{prop.preco_total}}',
+{% endfor %}
+]
+
+var price_html = document.querySelectorAll('.price')
+
+price_html.forEach((value, position) => {
+value.innerHTML = `valor da compra R$ ${prices[position].replace('.', ',')}`
+})
+
+{% endblock %}

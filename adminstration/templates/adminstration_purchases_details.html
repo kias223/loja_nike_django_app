@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'adminstration/adminstration_purchases_details.css' %} rel="stylesheet">
+</head>
+
+<body>
+    <section class="user_data">
+        <h1>dados do comprador</h1>
+        {% for data in perfil %}
+        <div class="user_data_content01">
+            <p> nome completo: {{ data.nome_completo }}</p>
+            <p>cpf: {{ data.cpf}} </p>
+            <p>telefone: {{ data.numero_telefone }} </p>
+        </div>
+
+        <div class="user_data_content02">
+            <p>CEP: {{ data.cep }}</p>
+            <p>bairro: {{ data.bairro }}</p>
+            <p>N° casa: {{ data.numero_casa }}</p>
+        </div>
+        {% endfor%}
+    </section>
+
+    <section class="purchase_detail">
+        <h1> detalhes do pedido </h1>
+        {% for props in post %}
+        <div class="purchase_props">
+            <h1>valor da compra: {{ props.preco_total }}</h1>
+            <p>feito em {{ props.valor_parcelas }}</p>
+        </div>
+        {% endfor%}
+        {% for detail in purchase_details %}
+        <div class="purchase_detail_content">
+            <div>
+                <p>modelo: {{ detail.modelo }}</p>
+                <p>tamanho: {{ detail.tamanho }}</p>
+                <p>quantidade:{{ detail.quantidade }}</p>
+            </div>
+            <a href="{% url 'product' detail.modelo_id %}" target="_blank">
+                <img src="{{ detail.img_url }}" alt="">
+            </a>
+        </div>
+        {% endfor %}
+    </section>
+
+
+    <a href="{% url 'adminstration_purchases' %}" class="back_btn">voltar</a>
+</body>
+
+</html>

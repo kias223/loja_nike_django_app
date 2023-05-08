@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link href={% static 'css/promotions.css' %} rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body %}
+    <section id="section_heigth">
+
+        <section class="post_content">
+            {% for post in posts %}
+            {% if post.desconto >= 30 %}
+
+            <div class="post_container">
+                <a href="{% url 'product' post.id %}">
+                    {% if post.desconto > 0 %}
+                    <div class="descont">
+                        <p>{{ post.desconto }}% off</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="img_product">
+                        <img src="{{ post.img }}">
+                    </div>
+                    <div>
+                        <h1>{{ post.modelo }}</h1>
+                        <div class="price">
+                            <h4>R$ {{ post.preco }}</h4>
+                            <h5>ou em até {{ post.parcelas }}x sem juros</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endif %}
+            {% endfor %}
+
+        </section>
+    </section>
+    {% endblock %}
+
+</body>
+
+</html>

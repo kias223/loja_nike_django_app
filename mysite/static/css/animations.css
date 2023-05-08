@@ -1,0 +1,57 @@
+@keyframes fade_in {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 100%;
+    }
+
+    75% {
+        opacity: 90%;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes load-bar {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 250px;
+    }
+}
+
+.alert-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    width: 250px;
+    height: 60px;
+    background-color: #F2994A;
+    position: relative;
+}
+
+.start::after {
+    content: '';
+    background-color: #000;
+    width: 0px;
+    height: 5px;
+    top: -5px;
+    left: 0;
+    position: absolute;
+    animation: load-bar 3s ease-in;
+}
+
+.alert-text {
+    color: #fff;
+}
+
+.start {
+    animation: fade_in 3s ease-in;
+}

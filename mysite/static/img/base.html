@@ -1,0 +1,55 @@
+<form>
+
+    <label>
+        <input type="text">
+        nome
+        <p class="alert"></p>
+    </label>
+
+    <label>
+        <input type="email">
+        email
+        <p class="alert"></p>
+    </label>
+
+    <button type="submit">en</button>
+</form>
+
+
+<style>
+    #submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 40px;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    var alert = document.querySelectorAll('.alert')
+    const form = document.querySelector('form')
+    var form_input = form.querySelectorAll('input')
+    const btn = document.querySelector('#submit')
+    const btn01 = document.querySelector('button')
+    const inpt = document.querySelector('input')
+
+    btn01.onclick = function () {
+        form_input.forEach((x, position) => {
+            if (!form_input[position].value) {
+                event.preventDefault()
+                alert[position].innerHTML = '!'
+            } else {
+                alert[0].innerHTML = ''
+                console.log(alert[0])
+            }
+        })
+    }
+
+    console.log(form_input[0])
+
+    console.log(alert)
+
+</script>

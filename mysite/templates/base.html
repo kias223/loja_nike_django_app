@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <a href="{% url 'home' %}" class="nike_logo"><img src="{% static 'icons/nike-logo.png' %}"></a>
+
+
+        <form method="GET">{% csrf_token %}
+            <div class="search">
+                <div class="icon">
+                    <i class="fas fa-search"></i>
+                    <button type="submit"></button>
+                </div>
+                <div class="input">
+                    <input type="text" placeholder="search" id="mysearch" name="marca">
+                </div>
+                <span class="clear"></span>
+            </div>
+        </form>
+
+        <a class="cart" href="{% url 'cart' %}">
+            <img src="{% static 'icons/cart-shopping.svg' %}">
+        </a>
+
+        <div class="hmb_menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="user">
+            <input type="checkbox" id="hamburguer-toggle">
+            <label class="hamburguer-wrapper" for="hamburguer-toggle">
+                <span class="hamburguer"></span>
+            </label>
+
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="{% url 'user_purchase' %}">pedidos</a></li>
+                    <li><a href="{% url 'perfil_update' %}">dados</a></li>
+                    <li><a href="{% url 'logout' %}">logout</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        {% else %}
+
+        <div class="login">
+            <a href="{% url 'login' %}">login</a>
+        </div>
+
+        {% endif %}
+    </header>
+
+
+    {% block body %}
+    {% endblock %}
+
+    <script defer>
+
+        const icon = document.querySelector('.icon')
+        const close = document.querySelector('.clear')
+        const search = document.querySelector('.search')
+        var cart = document.querySelector('.cart')
+        var nike_logo = document.querySelector('.nike_logo')
+
+        icon.onclick = function () {
+            search.classList.add('active')
+            cart.classList.toggle('on')
+            nike_logo.classList.toggle('on')
+        }
+
+        close.onclick = function () {
+            document.getElementById('mysearch').value = ''
+            search.classList.remove('active')
+            cart.classList.toggle('on')
+            nike_logo.classList.toggle('on')
+        }
+
+        {% block script %}
+        {% endblock %}
+    </script>
+
+
+</body>
+
+</html>

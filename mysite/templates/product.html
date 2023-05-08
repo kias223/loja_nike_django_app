@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'css/product.css' %} rel="stylesheet">
+    <link href={% static 'css/animations.css' %} rel="stylesheet">
+    <script src="{% static 'js/product.js'%}" defer></script>
+    {% endblock %}
+</head>
+
+<body>
+    {% block body %}
+
+    {% for prop in post_props %}
+    <section>
+        <div class="container_information">
+            <h1 id="modelo">{{ prop.modelo }}</h1>
+            {% if prop.desconto > 0 %}
+            <p class="descont">{{ prop.desconto }}% off</p>
+            {% endif %}
+            <h4 id="preco">R$ {{ preco }}</h4>
+            <p>em até {{ prop.parcelas }}x sem juros</p>
+            <div class="sizes">
+                <h1>tamanhos</h1>
+
+                <div>
+
+                    {% if prop.tamanho35 %}
+                    <input type="radio" value="35" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho36 %}
+                    <input type="radio" value="36" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho37 %}
+                    <input type="radio" value="37" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho38 %}
+                    <input type="radio" value="38" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho39 %}
+                    <input type="radio" value="39" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho40 %}
+                    <input type="radio" value="40" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho41 %}
+                    <input type="radio" value="41" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho42 %}
+                    <input type="radio" value="42" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho43 %}
+                    <input type="radio" value="43" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho44 %}
+                    <input type="radio" value="44" name="TM">
+                    {% endif%}
+
+                    {% if prop.tamanho45 %}
+                    <input type="radio" value="45" name="TM">
+                    {% endif%}
+
+                </div>
+            </div>
+            <div class="alert-container">
+                <span class="load_bar"></span>
+                <p class="alert-text"></p>
+            </div>
+            <div class="button">
+                <button id="buy-now-btn">comprar agora</button>
+                <button type="submit" id="add-tocart-btn">adiconar no carrinho
+                </button>
+            </div>
+        </div>
+        <div class="img_product">
+            <img src="{{ prop.img_produto.url }}" alt="" id="img_prod">
+        </div>
+    </section>
+
+    {% endfor %}
+
+    {% endblock %}
+</body>
+
+{% block script %}
+
+{% for prop in post_props %}
+const img = '{{ prop.img_produto.url }}'
+const id = '{{ prop.id }}'
+const parcelas = '{{ prop.parcelas }}'
+const modelo_id = '{{ prop.id }}'
+{% endfor %}
+
+{% endblock %}
+
+
+</html>

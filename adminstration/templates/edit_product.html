@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'adminstration/edit-product.css' %} rel="stylesheet">
+    <script src="{% static 'validation_new_product.js' %}"></script>
+</head>
+
+<body>
+
+    <header>
+        <div><a href="{% url 'home' %}">site</a></div>
+        <div><a href="{% url 'adminstration-view' %}">produtos</a></div>
+        <div><a href="{% url 'adminstration_purchases' %}">pedidos</a></div>
+        <div><a href="{% url 'page_admins' %}">adminstradores</a></div>
+    </header>
+
+    <form action="" method="post" class="form" enctype="multipart/form-data">{% csrf_token %}
+        <div class="container01">
+            <div class="input_informations">
+
+                <label>
+                    modelo:
+                    {{ form.modelo }}
+                </label>
+
+                <label>
+                    preço:
+                    {{ form.preço }}
+                </label>
+
+                <label class="parcelas">
+                    parcelas:
+                    {{ form.parcelas }}
+                </label>
+
+                <label class="desconto">
+                    desconto em %:
+                    {{ form.desconto }}
+                </label>
+
+                <label>
+                    data de lançamento:
+                    {{ form.data_lançamento }}
+                </label>
+
+            </div>
+
+            <label class="picture" tabindex="0">
+                <span class="picture__image"><img src="../media/{{ post.img_produto }}" width="200"></span>
+                {{ form.img_produto }}
+            </label>
+
+        </div>
+
+        <div class="tamanhos">
+
+            <label>
+                {{ form.tamanho35 }}
+                tamanho 35
+            </label>
+
+            <label>
+                {{ form.tamanho36 }}
+                tamanho 36
+            </label>
+
+            <label>
+                {{ form.tamanho37 }}
+                tamanho 37
+            </label>
+
+            <label>
+                {{ form.tamanho38 }}
+                tamanho 38
+            </label>
+
+            <label>
+                {{ form.tamanho39 }}
+                tamanho 39
+            </label>
+
+            <label>
+                {{ form.tamanho40 }}
+                tamanho 40
+            </label>
+
+            <label>
+                {{ form.tamanho41 }}
+                tamanho 41
+            </label>
+
+            <label>
+                {{ form.tamanho42 }}
+                tamanho 42
+            </label>
+
+            <label>
+                {{ form.tamanho43 }}
+                tamanho 43
+            </label>
+
+            <label>
+                {{ form.tamanho44 }}
+                tamanho 44
+            </label>
+
+            <label>
+                {{ form.tamanho45 }}
+                tamanho 45
+            </label>
+
+        </div>
+
+
+        <input type="submit" value="editar" class="editar_btn">
+    </form>
+
+
+
+    <script defer>
+        const label = document.querySelectorAll('label')
+        label[6].style.display = "none"
+    </script>
+
+</body>
+
+</html>

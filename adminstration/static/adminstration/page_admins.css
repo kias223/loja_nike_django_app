@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 5px;
+}
+
+header {
+    background-color: #252525;
+    font-size: 4rem;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 5%;
+}
+
+header a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.add_admin {
+    margin-top: 30px;
+    padding-right: 40px;
+    font-size: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+    height: 40px;
+}
+
+p {
+    text-align: center;
+    padding: 5px 0;
+    width: 150px;
+    font-size: 4rem;
+    margin-left: 30px;
+}

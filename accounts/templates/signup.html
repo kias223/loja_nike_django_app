@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href={% static 'css/login_style.css' %} rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<section>
+      <h2>cadastro</h2>
+{{ form.non_field_errors }}
+     <form method="post" action=".">
+            {% csrf_token %}
+
+            <div class="txt_field">
+                {{ form.username }}
+                {{ form.username.errors }}
+                <span></span>
+                <label>USUARIO</label>
+            </div>
+
+            <div class="txt_field">
+                {{ form.email }}
+                {{ form.email.errors }}
+                {{ form.email.ValidationError }}
+                <span></span>
+                <label>EMAIL</label>
+            </div>
+
+            <div class="txt_field password_field">
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+                <span></span>
+                 <span class="password_span">
+                    <ul>Sua senha precisa conter pelo menos 8 caracteres.</ul>
+                    <ul>Sua senha não pode ser muito parecida com o resto das suas informações pessoais.</ul>
+                    <ul>Sua senha não pode ser uma senha comumente utilizada.</ul>
+                    <ul>Sua senha não pode ser inteiramente numérica.</ul>
+                </span>
+                <label>SENHA</label>
+            </div>
+
+            <div class="txt_field">
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+                <span></span>
+                <label>CONFIRMAÇÃO DE SENHA</label>
+            </div>
+
+           <button type="submit">cadastre-se</button>
+        </form>
+
+        <div  class="signup_link">
+            <a href="{% url 'home' %}">cancelar</a>
+        </div>
+</section>
+
+</body>
+</html>

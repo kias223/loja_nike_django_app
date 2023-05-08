@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% block head%}
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer=""></script>
+    <script src="{% static 'js/cart.js' %}" defer></script>
+    <title>Title</title>
+    <link href={% static 'css/cart.css' %} rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block body %}
+    <main>
+        <section id="post_container"></section>
+        <div class="price">
+            <p>total:</p>
+            <p id="total_price"></p>
+        </div>
+        <div class="end_purchase">
+            <a href="{% url 'purchase' %}">finalizar compra</a>
+        </div>
+    </main>
+    {% endblock %}
+
+</body>
+
+</html>

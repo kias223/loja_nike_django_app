@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Title</title>
+<script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer=""></script>
+<script src="{% static 'js/perfil.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'adminstration/perfil.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<form action="{% url 'perfil_update' %}" method="POST" class="form">{% csrf_token %}
+    <div class="label_form">
+        <label>
+            nome completo:
+            <div>
+                {{ form.nome_completo }}
+                <i class="fas fa-user" aria-hidden="true"></i>
+            </div>
+        </label>
+
+        <label class="cpf_place">
+            CPF:
+            <div>
+                {{ form.cpf }}
+                <i class="fas fa-id-card"></i>
+            </div>
+        </label>
+
+        <div>
+            <label>
+                RUA:
+                <div>
+                    {{ form.rua }}
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </div>
+            </label>
+
+            <label>
+                bairro:
+                <div>
+                    {{ form.bairro }}
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </div>
+            </label>
+
+            <label>
+                N°:
+                <div>
+                    {{ form.numero_casa }}
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </div>
+            </label>
+
+        </div>
+
+        <label>
+            CEP:
+            <div>
+                {{ form.cep }}
+                <i class="fas fa-inbox" aria-hidden="true"></i>
+            </div>
+        </label>
+
+        <label>
+            numero de telefone:
+            <div>
+                {{ form.numero_telefone }}
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            </div>
+        </label>
+    </div>
+
+    <div class="btns_form">
+        <button type="submit">atualizar</button>
+    </div>
+
+</form>
+
+{% endblock %}

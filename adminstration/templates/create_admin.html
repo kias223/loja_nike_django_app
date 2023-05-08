@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">{% csrf_token %}
+    <label>
+        username
+        <input type="text" name="username">
+    </label>
+
+    <label>
+        password
+        <input type="text" name="password">
+    </label>
+
+    <button type="submit">enviar</button>
+</form>
+
+<div><a href="{% url 'page_admins' %}">voltar</a></div>
+</body>
+</html>

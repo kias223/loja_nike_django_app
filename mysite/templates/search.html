@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'css/search.css' %} rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+    {% block body %}
+
+    <section class="post_content">
+
+        {% for post in posts %}
+        <div class="post_container">
+            <a href="{% url 'product' post.id %}">
+                {% if post.desconto > 0 %}
+                <div class="descont">
+                    <p>{{ post.desconto }}% off</p>
+                </div>
+                {% endif %}
+
+                <div class="img_product">
+                    <img src="{{ post.img }}">
+                </div>
+                <div>
+                    <h1>{{ post.modelo }}</h1>
+                    <div class="price">
+                        <h4>R$ {{ post.preco }}</h4>
+                        <h5>ou em até {{ post.parcela }}x sem juros</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    {% endblock %}
+
+</body>
+
+</html>
+{% block script %}
+var post_content = document.querySelector('.post_content')
+
+if (post_content.innerHTML.length <= 18 || post_content.innerHTML.length=='undefined' ) {
+    post_content.innerHTML='<h1>produto não encontrado</h1>' } {% endblock %}

@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <link href={% static 'css/login_style.css' %} rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+    <section>
+        <h2>login</h2>
+        <form method="post">{% csrf_token %}
+    {% if messages %}
+    {% for m in messages %}
+        <div class="alert alert-warning" role="alert">
+          {{ m }}
+        </div>
+    {% endfor %}
+{% endif %}
+            <div class="txt_field">
+                {{ form.username }}
+                {{ form.username.errors }}
+                <span></span>
+                <label>USUARIO OU EMAIL</label>
+            </div>
+
+            <div class="txt_field">
+                {{ form.password }}
+                {{ form.password.errors }}
+                <span></span>
+                <label>SENHA</label>
+            </div>
+
+            <button type="submit">login</button>
+        </form>
+
+        <div class="signup_link">
+            <a href="{% url 'home' %}">cancelar</a>
+            <a href="{% url 'signup' %}">cadastre-se</a>
+        </div>
+
+    </section>
+</body>
+</html>

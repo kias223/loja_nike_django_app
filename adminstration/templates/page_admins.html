@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'adminstration/page_admins.css' %} rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div><a href="{% url 'home' %}" target="_blank">site</a></div>
+        <div><a href="{% url 'adminstration-view' %}">produtos</a></div>
+        <div><a href="{% url 'adminstration_purchases' %}">pedidos</a></div>
+        <div><a href="{% url 'page_admins' %}">adminstradores</a></div>
+    </header>
+
+    {% if user.id == 1 %}
+    <a href="{% url 'create_admin' %}" class="add_admin"> adicionar adminstrador </a>
+    {% endif %}
+
+    {%  for admin in admins %}
+        <p>{{ admin }}</p>
+    {% endfor %}
+
+</body>
+
+</html>

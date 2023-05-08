@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>finalizar pedido</title>
+    <script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer=""></script>
+    <script src="{% static 'js/purchase.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/purchase.css' %}">
+</head>
+
+<body>
+
+    <div>{% csrf_token %}</div>
+    <section>
+
+        {% for db in user_props %}
+        {% if db.bairro == None or db.numero_casa == None or db.cep == None %}
+        <div class="no_register">
+            <h1>você não possui nenhum endereço cadastrado</h1>
+            <a href="{% url 'perfil_update' %}">atualizar dados</a>
+        </div>
+        {% else %}
+        <div class="perfil_data">
+            <h1>confirmar dados</h1>
+            <div>
+                <p>nome completo: {{ db.nome_completo}}</p>
+                <p>telefone: {{ db.numero_telefone}}</p>
+            </div>
+
+            <div>
+                <p>bairrro: {{ db.bairro}}</p>
+                <p>CEP: {{ db.cep}}</p>
+                <p>Nº casa: {{ db.numero_casa}}</p>
+            </div>
+            <a href="{% url 'perfil_update' %}">atualizar dados</a>
+        </div>
+        {% endif %}
+        {% endfor%}
+
+        <div id="user_cart">
+        </div>
+        <div id="total_parcels"></div>
+
+        {% for db in user_props %}
+        {% if db.bairro == None or db.numero_casa == None or db.cep == None %}
+        {% else %}
+        <p class="alert"></p>
+        <div class="bottom_btns">
+            <button id="send_btn">concluir pedido</button>
+            <a href="{% url 'cart' %}">voltar</a>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </section>
+
+    <script defer>
+        {% if user.is_authenticated %}
+        const user_name = '{{ user.username }}'
+        const user_id = '{{ user.id }}'
+        {% endif %}
+    </script>
+
+</body>
+
+</html>

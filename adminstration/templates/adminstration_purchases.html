@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href={% static 'adminstration/adminstration_purchases.css' %} rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div><a href="{% url 'home' %}" target="_blank">site</a></div>
+        <div><a href="{% url 'adminstration-view' %}">produtos</a></div>
+        <div><a href="{% url 'adminstration_purchases' %}">pedidos</a></div>
+        <div><a href="{% url 'page_admins' %}">adminstradores</a></div>
+    </header>
+
+    <div class="status_links">
+        <p>ir para:</p>
+        <a href="#status01">aguardando pagamento</a>
+        <a href="#status02">pagamento confirmado</a>
+        <a href="#status03">preparando produto para entrega</a>
+        <a href="#status04">produto em rota</a>
+        <a href="#status05">produto entregue</a>
+    </div>
+
+    <h1 id="status01">status: aguardando pagamento</h1>
+    <section>
+        {% for post in status01 %}
+        <div class="post_container">
+            <div class="post_content01">
+                <p>valor da compra: {{ post.preco_total }}</p>
+                <p>comprador: {{ post.user_name }} </p>
+                <p>feito em {{ post.valor_parcelas }} </p>
+            </div>
+            <div>
+                <div class="post_content02">
+                    <a href="{% url 'adminstration_purchases_details' post.id %}"> ver detalhes</a>
+                    <button id="open_modal{{post.id}}">editar status</button>
+                </div>
+            </div>
+        </div>
+
+        <dialog id="status_dialog{{ post.id }}">
+            <button id="close_dialog{{ post.id }}" class="close_dialog">X</button>
+            <div>
+                <h2> status atual: aguardando pagamento = vazio</h2>
+            </div>
+            <form method="post">{% csrf_token %}
+                <input type="number" value="{{post.id}}" name="post_id">
+                {{ form }}
+                <button type="submit">editar status</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </section>
+
+
+    <h1 id="status02">status: pagamento confirmado</h1>
+    <section>
+        {% for post in status02 %}
+        <div class="post_container">
+            <div class="post_content01">
+                <p>valor da compra: {{ post.preco_total }}</p>
+                <p>comprador: {{ post.user_name }} </p>
+                <p>feito em {{ post.valor_parcelas }} </p>
+            </div>
+            <div class="post_content02">
+                <a href="{% url 'adminstration_purchases_details' post.id %}"> ver detalhes</a>
+                <button id="open_modal{{post.id}}">editar status</button>
+            </div>
+        </div>
+
+        <dialog id="status_dialog{{ post.id }}">
+            <button id="close_dialog{{ post.id }}" class="close_dialog">X</button>
+            <div>
+                <h2> status atual: pagamento confirmado</h2>
+            </div>
+            <form method="post">{% csrf_token %}
+                <input type="number" value="{{post.id}}" name="post_id">
+                {{ form }}
+                <button type="submit">editar status</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </section>
+
+
+    <h1 id="status03">status: preparando produto para entrega</h1>
+    <section>
+        {% for post in status03 %}
+        <div class="post_container">
+            <div class="post_content01">
+                <p>valor da compra: {{ post.preco_total }}</p>
+                <p>comprador: {{ post.user_name }} </p>
+                <p>feito em {{ post.valor_parcelas }} </p>
+            </div>
+            <div class="post_content02">
+                <a href="{% url 'adminstration_purchases_details' post.id %}"> ver detalhes</a>
+                <button id="open_modal{{post.id}}">editar status</button>
+            </div>
+        </div>
+
+        <dialog id="status_dialog{{ post.id }}">
+            <button id="close_dialog{{ post.id }}" class="close_dialog">X</button>
+            <div>
+                <h2> status atual: preparando produto para entrega</h2>
+            </div>
+            <form method="post">{% csrf_token %}
+                <input type="number" value="{{post.id}}" name="post_id">
+                {{ form }}
+                <button type="submit">editar status</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </section>
+
+    <h1 id="status04">status: produto em rota</h1>
+    <section>
+        {% for post in status04 %}
+        <div class="post_container">
+            <div class="post_content01">
+                <p>valor da compra: {{ post.preco_total }}</p>
+                <p>comprador: {{ post.user_name }} </p>
+                <p>feito em {{ post.valor_parcelas }} </p>
+            </div>
+            <div class="post_content02">
+                <a href="{% url 'adminstration_purchases_details' post.id %}"> ver detalhes</a>
+                <button id="open_modal{{post.id}}">editar status</button>
+            </div>
+        </div>
+
+        <dialog id="status_dialog{{ post.id }}">
+            <button id="close_dialog{{ post.id }}" class="close_dialog">X</button>
+            <div>
+                <h2> status atual: produto em rota</h2>
+            </div>
+            <form method="post">{% csrf_token %}
+                <input type="number" value="{{post.id}}" name="post_id">
+                {{ form }}
+                <button type="submit">editar status</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </section>
+
+
+    <h1 id="status05">status: produto entregue </h1>
+    <section>
+        {% for post in status05 %}
+        <div class="post_container">
+            <div class="post_content01">
+                <p>valor da compra: {{ post.preco_total }}</p>
+                <p>comprador: {{ post.user_name }} </p>
+                <p>feito em {{ post.valor_parcelas }} </p>
+            </div>
+            <div class="post_content02">
+                <a href="{% url 'adminstration_purchases_details' post.id %}"> ver detalhes</a>
+                <button id="open_modal{{post.id}}">editar status</button>
+            </div>
+        </div>
+
+        <dialog id="status_dialog{{ post.id }}">
+            <button id="close_dialog{{ post.id }}" class="close_dialog">X</button>
+            <div>
+                <h2> status atual: produto entregue</h2>
+            </div>
+            <form method="post">{% csrf_token %}
+                <input type="number" value="{{post.id}}" name="post_id">
+                {{ form }}
+                <button type="submit">editar status</button>
+            </form>
+        </dialog>
+        {% endfor %}
+    </section>
+
+</body>
+
+<script defer>
+    {% for post in posts %}
+
+    const open_modal_btn{{ post.id }} = document.getElementById('open_modal{{ post.id }}')
+    const dialog_modal{{ post.id }} = document.getElementById('status_dialog{{post.id}}')
+    const close_modal_btn{{ post.id }} = document.getElementById('close_dialog{{ post.id }}')
+
+        open_modal_btn{{ post.id }}.onclick = function () {
+            dialog_modal{{ post.id }}.showModal()
+    }
+
+        close_modal_btn{{ post.id }}.onclick = function () {
+        dialog_modal{{ post.id }}.close()
+    }
+    {% endfor %}
+
+    const xx = document.query
+</script>
+
+</html>

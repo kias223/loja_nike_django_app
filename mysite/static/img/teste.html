@@ -1,0 +1,312 @@
+<script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer=""></script>
+<section>
+
+    <p id="modelo">nike air force</p>
+    <p id="preco"> R$ 150,50</p>
+
+    <img src="nike_revolution5.png" alt="" id="nike_revolution5.png" class="img_post">
+    <label>
+        <input type="radio" name="TM" value="41">
+        41
+    </label>
+
+    <label>
+        <input type="radio" name="TM" value="42">
+        42
+    </label>
+
+    <label>
+        <input type="radio" name="TM" value="43">
+        43
+    </label>
+    <button id="btn">enviar</button>
+
+
+    <div id="md_choice"></div>
+    <div class="price">
+        <p>total:</p>
+        <p id="total_price"></p>
+    </div>
+    <br>
+    <div>
+        <p class="tm_alert">!escolha um tamanho</p>
+        <p class="tm_alert02">o item ja esta no carrinho</p>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .tm_alert {
+            display: none;
+            background-color: rgb(65, 65, 185);
+            font-size: 18px;
+            color: #fff;
+            width: 200px;
+            padding: 10px 0;
+            text-align: center;
+            transition: 100s;
+        }
+
+        .tm_alert02 {
+            display: none;
+            background-color: rgb(65, 65, 185);
+            font-size: 18px;
+            color: #fff;
+            padding: 10px 0;
+            width: 200px;
+            text-align: center;
+        }
+
+        #md_choice {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            border-radius: 20px;
+            background-color: #F2F2F2;
+            width: 620px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .cart {
+            border-bottom: 1px solid;
+            display: flex;
+            margin: 0 auto;
+            width: 600px;
+            gap: 80px;
+        }
+
+        .img_product {
+            width: 35%;
+        }
+
+        .img_product img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
+        .props {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50%;
+        }
+
+        .props img {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
+        .props h1 {
+            padding: 5px 0;
+            font-size: 30px;
+        }
+
+        .props p {
+            color: #F2994A;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .quant {
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 50px;
+            border-radius: 5px;
+            gap: 8px;
+        }
+
+        .quant button {
+            color: #828282;
+            background-color: #E0E0E0;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            width: 30px;
+            height: 30px;
+        }
+
+        .quant p {
+            color: #000;
+            margin: 0;
+            font-size: 25px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+            padding-top: 10px;
+            padding: 30px;
+            width: 90%;
+            margin: 40px auto;
+            border-top: 1px solid black;
+        }
+
+        .price p {
+            font-size: 25px;
+        }
+    </style>
+
+    <script defer>
+        const md_choice = document.getElementById('md_choice')
+        let btn = document.getElementById('btn')
+        let checkboxes = document.getElementsByName('TM')
+        const modelo = document.getElementById('modelo').innerHTML
+        const preco = document.getElementById('preco').innerHTML
+        const buttton_delete = document.querySelectorAll('a')
+        const img = document.querySelector('.img_post').id
+        console.log(img)
+        let tm_choice = ''
+        const id = '2'
+
+
+
+        btn.onclick = function () {
+            for (checkbox of checkboxes) {
+                if (checkbox.checked == true) {
+                    checkbox = checkbox.value
+                    tm_choice = checkbox
+                }
+            }
+            const post_choices = {
+                modelo: modelo,
+                preço: preco,
+                tamanho: tm_choice,
+                quantidade: '1',
+                img_url: img
+            }
+
+            if (tm_choice.length == 0) {
+                document.querySelector('.tm_alert').style.display = 'initial'
+                setTimeout(() => {
+                    document.querySelector('.tm_alert').style.display = 'none'
+                }, 2000)
+            } else {
+                if (!localStorage.getItem('post_choice' + id + tm_choice)) {
+                    localStorage.setItem('post_choice' + id + tm_choice, JSON.stringify(post_choices))
+                    window.location.reload(true);
+                } else {
+                    document.querySelector('.tm_alert02').style.display = 'initial'
+                }
+            }
+        }
+
+
+        let llm = ''
+        if (localStorage.length != 0) {
+            for (let post in localStorage) {
+                if (post.includes('post_choice')) {
+                    let choice = localStorage.getItem(post)
+                    const user_choice = JSON.parse(choice)
+                    llm += `
+                    <section class="cart">
+                        <div class="img_product"><img src="${user_choice.img_url}" alt=""></div>
+                        <div class="props">
+                            <a href="#" id = "${post}">
+                                <img src="../icons/trash-solid.svg" alt="">
+                            </a>
+                            <h1>${user_choice.modelo}</h1>
+                            <p>${user_choice.preço}</p>
+                            <h2>tamanho: ${user_choice.tamanho}</h2>
+                            <div class="quant">
+                                <button class="btn01"><i class="fas fa-minus" aria-hidden="true"></i></button>
+                                <p class="quantN">1</p>
+                                <button class="btn02"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </section>
+                    `
+                }
+            }
+        }
+
+        md_choice.innerHTML = llm
+
+
+        var cart = document.querySelectorAll('.cart')
+        var total_price = document.querySelector('#total_price')
+        var Price = null
+
+        if (cart) {
+            cart.forEach((x, position) => {
+                const btn1 = cart[position].querySelector('.btn01')
+                const btn2 = cart[position].querySelector('.btn02')
+                var quantN = cart[position].querySelector('.quantN')
+                var buttton_delete = cart[position].querySelector('a')
+                var post_id = buttton_delete.id
+                var storage = localStorage.getItem(post_id)
+                storage = JSON.parse(storage)
+
+                buttton_delete.onclick = function () {
+                    localStorage.removeItem(post_id)
+                    window.location.reload(true)
+                }
+
+                btn2.onclick = function () {
+                    quantN.innerHTML = parseInt(quantN.innerHTML) + 1
+
+                    storage.quantidade = quantN.innerHTML
+                    localStorage.setItem(post_id, JSON.stringify(storage))
+                    window.location.reload(true)
+                }
+
+                btn1.onclick = function () {
+                    if (parseInt(quantN.innerHTML) > 1) {
+                        quantN.innerHTML = parseInt(quantN.innerHTML) - 1
+
+                        storage.quantidade = quantN.innerHTML
+                        localStorage.setItem(post_id, JSON.stringify(storage))
+                        window.location.reload(true)
+                    }
+                }
+
+                var price = cart[position].querySelector('p').innerHTML
+                price = price.replace('R$', '')
+                price = price.replace(',', '.')
+                price = parseFloat(price) * parseInt(storage.quantidade)
+                Price += parseFloat(price)
+                console.log(price)
+
+
+                if (storage.quantidade) {
+                    quantN.innerHTML = storage.quantidade
+                }
+
+            })
+        }
+
+        total_price.innerHTML = Price.toFixed(2)
+        total_price.innerHTML.replace('.', ',')
+        total_price.innerHTML = 'R$ ' + total_price.innerHTML.replace('.', ',')
+
+
+        var time = new Date()
+        var date = time.toDateString()
+        date = date.slice(4, -5)
+        var new_date = parseInt(date.charAt(5)) + 1
+        date = date.replace(date.charAt(5), new_date)
+
+    </script>

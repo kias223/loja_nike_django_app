@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 5px;
+}
+
+header a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.status_links {
+    display: flex;
+    margin-top: 40px;
+    height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 3.5rem;
+}
+
+.status_links a {
+    padding: 8px;
+    color: #fff;
+    text-decoration: none;
+    background-color: black;
+}
+
+h1 {
+    border-top: 1px black solid;
+    margin: 0 10%;
+    margin-top: 80px;
+    font-size: 4rem;
+}
+
+header {
+    background-color: #252525;
+    font-size: 4rem;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 5%;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    margin: 0 auto;
+    width: 90%;
+    height: max-content;
+    padding: 30px 0;
+}
+
+.post_container {
+    border-radius: 20px;
+    border: 1px solid rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 270px;
+    height: 250px;
+}
+
+.post_content01 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 4rem;
+    padding: 15px 0;
+}
+
+.post_content02 {
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 4rem;
+}
+
+.post_content02 a {
+    text-decoration: none;
+    background-color: #252525;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    width: 120px;
+    height: 30px;
+}
+
+.post_content02 button {
+    cursor: pointer;
+    width: 120px;
+    height: 30px;
+}
+
+dialog {
+    padding: 10px;
+    width: 600px;
+    height: 250px;
+    border-radius: 20px;
+    margin: auto;
+}
+
+dialog .close_dialog {
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+dialog h2 {
+    font-size: 4.2rem;
+    margin-top: 50px;
+}
+
+dialog form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    height: 60px;
+    font-size: 4rem;
+    gap: 10px;
+}
+
+dialog form button {
+    width: 120px;
+    height: 30px;
+    margin-left: 40px;
+    text-align: center;
+}
+
+dialog form select {
+    width: 300px;
+    height: 30px;
+    font-size: 3.5rem;
+}
+
+dialog input {
+    display: none;
+}

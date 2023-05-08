@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/d81437f661.js" crossorigin="anonymous" defer></script>
+    <link href={% static 'adminstration/new-product.css' %} rel="stylesheet">
+    <script src="{% static 'js/validation_new_product.js' %}" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div><a href="{% url 'home' %}">site</a></div>
+        <div><a href="{% url 'adminstration-view' %}">produtos</a></div>
+        <div><a href="{% url 'adminstration_purchases' %}">pedidos</a></div>
+        <div><a href="{% url 'page_admins' %}">adminstradores</a></div>
+    </header>
+
+    <form action="{% url 'new-product' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="container01">
+
+            <div class="input_informations">
+
+                <label class="modelo">
+                    modelo:
+                    {{ form.modelo }}
+                </label>
+
+                <label class="preco">
+                    preço:
+                    {{ form.preço }}
+                </label>
+
+                <label class="parcelas">
+                    parcelas:
+                    {{ form.parcelas }}
+                </label>
+
+                <label class="desconto">
+                    % em desconto:
+                    {{ form.desconto }}
+                </label>
+
+                <label class="data">
+                    data de lançamento:
+                    {{ form.data_lançamento }}
+                </label>
+
+            </div>
+
+            <label class="picture" tabindex="0">
+                <span class="picture__image"><img src="../media/{{ post.img_produto }}" width="200"></span>
+                {{ form.img_produto }}
+            </label>
+
+        </div>
+
+        <div class="tamanhos">
+
+            <label>
+                tamanho35
+                {{ form.tamanho35 }}
+            </label>
+
+            <label>
+                tamanho36
+                {{ form.tamanho36 }}
+            </label>
+
+            <label>
+                tamanho37
+                {{ form.tamanho37 }}
+            </label>
+
+            <label>
+                tamanho38
+                {{ form.tamanho38 }}
+            </label>
+
+            <label>
+                tamanho39
+                {{ form.tamanho39 }}
+            </label>
+
+            <label>
+                tamanho40
+                {{ form.tamanho40 }}
+            </label>
+
+            <label>
+                tamanho41
+                {{ form.tamanho41 }}
+            </label>
+
+            <label>
+                tamanho42
+                {{ form.tamanho42 }}
+            </label>
+
+            <label>
+                tamanho43
+                {{ form.tamanho43 }}
+            </label>
+
+            <label>
+                tamanho44
+                {{ form.tamanho44 }}
+            </label>
+
+            <label>
+                tamanho45
+                {{ form.tamanho45 }}
+            </label>
+
+        </div>
+
+        <div class="btns">
+            <button type="submit" id="btn_submit">enviar</button>
+            <a href="{% url 'adminstration-view' %}">cancelar</a>
+        </div>
+    </form>
+
+
+    <br>
+    <br>
+
+</body>
+
+
+
+</html>

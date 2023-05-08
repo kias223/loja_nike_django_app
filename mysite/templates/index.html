@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link href={% static 'css/index.css' %} rel="stylesheet">
+    {% endblock %}
+</head>
+
+{% block body %}
+<section class="poster_accordion">
+    {% for banner in banners %}
+    <a href="{% url 'product' banner.id %}" style="background-image: url({{banner.img}});" class="img">
+        <p>{{banner.modelo}}</p>
+    </a>
+    {% endfor %}
+</section>
+
+<div class="text">
+    <h1>promoções</h1>
+</div>
+
+<section class="post_content">
+    {% for post in posts %}
+    {% if post.desconto >= 30 %}
+
+    <div class="post_container">
+        <a href="{% url 'product' post.id %}">
+            {% if post.desconto > 0 %}
+            <div class="descont">
+                <p>{{ post.desconto }}% off</p>
+            </div>
+            {% endif %}
+
+            <div class="img_product">
+                <img src="{{ post.img }}">
+            </div>
+            <div class="post_information">
+                <h1>{{ post.modelo }}</h1>
+                <div class="price">
+                    <h4>R$ {{ post.preco }}</h4>
+                    <h5>ou em até {{ post.parcelas }}x sem juros</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    {% endif %}
+    {% endfor %}
+</section>
+
+<div class="text">
+    <h1>todos os produtos</h1>
+</div>
+
+<section id="section_heigth">
+    <section class="post_content" id="post_content">
+        {% for post in posts %}
+        <div class="post_container">
+            <a href="{% url 'product' post.id %}">
+                {% if post.desconto > 0 %}
+                <div class="descont">
+                    <p>{{ post.desconto }}% off</p>
+                </div>
+                {% endif %}
+
+                <div class="img_product">
+                    <img src="{{ post.img }}">
+                </div>
+                <div class="post_information">
+                    <h1>{{ post.modelo }}</h1>
+                    <div class="price">
+                        <h4>R$ {{ post.preco }}</h4>
+                        <h5>ou em até {{ post.parcela }}x sem juros</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </section>
+</section>
+
+<div class="expand_btn">
+    <button id="expand_btn">ver mais</button>
+</div>
+
+<footer>
+    <h1>nos siga nas redes sociais</h1>
+
+    <div class="icons_footer">
+        <a href="#" class="icon_footer icon--instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="icon_footer icon--facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="#" class="icon_footer icon--twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+
+        <a href="#" class="icon_footer icon--github">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+</footer>
+
+
+{% endblock %}
+
+<script>
+    {% block script %}
+    const expand_btn = document.querySelector('#expand_btn')
+
+    var post_content_heigth = document.querySelector('#post_content')
+    var section_heigth = document.querySelector('#section_heigth')
+
+    post_content_heigth = post_content_heigth.getBoundingClientRect().height
+    section_heigth = section_heigth.getBoundingClientRect().height
+
+    expand_btn.addEventListener('click', () => {
+        let section = document.querySelector('#section_heigth')
+
+        if (section_heigth + 800 < post_content_heigth) {
+            section_heigth += 800
+            section.style.height = `${section_heigth}px`
+        } else {
+            section.style.height = `${post_content_heigth}px`
+            expand_btn.style.display = 'none'
+        }
+        console.log(section)
+    })
+
+    {% endblock %}
+
+</script>

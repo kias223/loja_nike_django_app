@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    border-bottom: 1px solid black;
+    background: #fff;
+    top: 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0 3%;
+    z-index: 100;
+}
+
+header a {
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.nike_logo {
+    width: 100px;
+    height: 100px;
+}
+
+.nike_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sub_menu {
+    gap: 30%;
+    display: flex;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub_menu a {
+    color: #000;
+}
+
+.cart {
+    margin-left: 20px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart p {
+    font-size: 25px;
+}
+
+.cart img {
+    object-fit: contain;
+    width: 30px;
+    height: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.post_content {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    place-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.post_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 350px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rebeccapurple;
+    border-radius: 20px;
+    margin-top: 40px;
+    color: #000;
+}
+
+.img_product {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_product img {
+    height: 90%;
+    width: 90%;
+    object-fit: contain;
+}
+
+.post_container h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 80px;
+    margin: 0 auto;
+    font-size: 27px;
+    text-align: center;
+    color: #000;
+}
+
+.price {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.price h4 {
+    font-size: 25px;
+    color: black;
+}
+
+.descont {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+.descont p {
+    font-size: 20px;
+    width: 225px;
+    padding: 15px 0px;
+    background-color: red;
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -25px;
+    transform: rotate(45deg);
+    text-align: right;
+    padding-right: 45px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+
+@media (max-width: 900px) {
+    .post_container {
+        margin-top: 20px;
+    }
+}
