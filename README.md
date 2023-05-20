@@ -1,6 +1,4 @@
 ## 💻 Pré-requisitos
 
-python 
-django
-django-rest-framework
+instale as libs necessárias em requirementes.txt
 
