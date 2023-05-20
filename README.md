@@ -1,4 +1,5 @@
 ## 💻 Pré-requisitos
 
-instale as libs necessárias em requirementes.txt
+instale as libs necessárias em requeriments.txt
+
 
